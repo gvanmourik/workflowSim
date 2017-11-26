@@ -140,10 +140,10 @@ bool readInTrace(PinTunnel &tunnel, size_t &bufferIndex, std::vector<trace_entry
 
     while ( true )
     {
-        //Collect trace segment, with size according to WORKSPACE_SIZE in macro.h
-        //No need to clear readInData before passing it, as it is cleared in read()
+        // Collect trace segment, with size according to WORKSPACE_SIZE in macro.h
+        // No need to clear readInData before passing it, as it is cleared in read()
         tunnel.readTraceSegment(bufferIndex, readInData);
-        //Clear trace buffer
+        // Clear trace buffer
         tunnel.clearBuffer(bufferIndex);
 
         
