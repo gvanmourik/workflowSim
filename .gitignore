@@ -1,7 +1,10 @@
 # Ignore OSX directory specifics
 .DS_Store
 
+*.swp
+*.swo
+
 # Ignore these directories
 bin
 test
-data */
+data
