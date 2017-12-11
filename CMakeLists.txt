@@ -65,6 +65,7 @@ set(PIN_DEFINES
   __DARWIN_ONLY_UNIX_CONFORMANCE=1 
   __DARWIN_UNIX03=0)
 
+
 # CHECK_INCLUDE_FILE_CXX( sst/core/interprocess/sstmutex.h FOUND_SST -I${SST_CORE}/include )
 
 set(CMAKE_REQUIRED_FLAGS "")
@@ -81,14 +82,18 @@ foreach (FLG ${PIN_CXX_FLAGS})
   set (CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} ${FLG}")
 endforeach()
 
+
+CHECK_INCLUDE_FILE_CXX( mySSTMutex.h FOUND_MY_SST -I${CMAKE_SOURCE_DIR}/include )
+message("FOUND_MY_SST = ${FOUND_MY_SST}")
+
 # if (NOT FOUND_SST)
 #   message(FATAL_ERROR "cannot locate valid SST header files at given SST_CORE path")
 # endif()
 
-CHECK_INCLUDE_FILE_CXX( pin.H FOUND_PIN )
+CHECK_INCLUDE_FILE_CXX( pin.H FOUND_PIN -I${PIN_INCLUDE_DIRS} )
 message("FOUND_PIN = ${FOUND_PIN}")
-message("CMAKE_REQUIRED_INCLUDES = ${CMAKE_REQUIRED_INCLUDES}")
-message("CMAKE_REQUIRED_FLAGS = ${CMAKE_REQUIRED_FLAGS}")
+message("PIN_ROOT = ${PIN_ROOT}")
+message("CMAKE_REQUIRED_FLAGS = ${CMAKE_REQUIRED_FLAGS}\n")
 
 if ( FOUND_PIN )
   message("FOUND PIN!!!")
