@@ -3,6 +3,7 @@
 
 *.swp
 *.swo
+workflowProject.*
 
 # Ignore these directories
 bin/
