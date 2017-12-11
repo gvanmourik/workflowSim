@@ -65,7 +65,8 @@ set(PIN_DEFINES
   __DARWIN_ONLY_UNIX_CONFORMANCE=1 
   __DARWIN_UNIX03=0)
 
-CHECK_INCLUDE_FILE_CXX( sst/core/interprocess/sstmutex.h FOUND_SST -I${SST_CORE}/include )
+# CHECK_INCLUDE_FILE_CXX( sst/core/interprocess/sstmutex.h FOUND_SST -I${SST_CORE}/include )
+
 set(CMAKE_REQUIRED_FLAGS "")
 foreach (PTH ${PIN_INCLUDE_DIRS})
   set (CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} -I${PTH}")
@@ -79,17 +80,25 @@ endforeach()
 foreach (FLG ${PIN_CXX_FLAGS})
   set (CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} ${FLG}")
 endforeach()
-CHECK_INCLUDE_FILE_CXX( pin.H FOUND_PIN )
 
-if (NOT FOUND_SST)
-  message(FATAL_ERROR "cannot locate valid SST header files at given SST_CORE path")
+# if (NOT FOUND_SST)
+#   message(FATAL_ERROR "cannot locate valid SST header files at given SST_CORE path")
+# endif()
+
+CHECK_INCLUDE_FILE_CXX( pin.H FOUND_PIN )
+message("FOUND_PIN = ${FOUND_PIN}")
+message("CMAKE_REQUIRED_INCLUDES = ${CMAKE_REQUIRED_INCLUDES}")
+message("CMAKE_REQUIRED_FLAGS = ${CMAKE_REQUIRED_FLAGS}")
+
+if ( FOUND_PIN )
+  message("FOUND PIN!!!")
 endif()
 
 if (NOT FOUND_PIN)
   message(FATAL_ERROR "cannot locate valid PIN header files at given PIN_ROOT path")
 endif()
 
-add_subdirectory(exe)
+add_subdirectory(src)
 add_subdirectory(pintools)
 
 

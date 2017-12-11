@@ -5,6 +5,6 @@
 *.swo
 
 # Ignore these directories
-bin
-test
-data
+bin/
+test/
+data/
