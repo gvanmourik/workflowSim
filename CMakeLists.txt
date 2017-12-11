@@ -95,10 +95,6 @@ message("FOUND_PIN = ${FOUND_PIN}")
 message("PIN_ROOT = ${PIN_ROOT}")
 message("CMAKE_REQUIRED_FLAGS = ${CMAKE_REQUIRED_FLAGS}\n")
 
-if ( FOUND_PIN )
-  message("FOUND PIN!!!")
-endif()
-
 if (NOT FOUND_PIN)
   message(FATAL_ERROR "cannot locate valid PIN header files at given PIN_ROOT path")
 endif()
