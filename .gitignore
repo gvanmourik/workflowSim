@@ -11,6 +11,7 @@
 bin/
 test/
 data/
+recorded_errors/
 
 # CMake
 CMakeFiles/
