@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_7920c.dir/testCCompiler.c.o  -o cmTC_7920c 

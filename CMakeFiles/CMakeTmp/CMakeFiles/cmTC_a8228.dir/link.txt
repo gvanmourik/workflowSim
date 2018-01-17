@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_a8228.dir/feature_tests.c.o  -o cmTC_a8228 

@@ -8,8 +8,12 @@ if (NOT CMAKE_VERSION VERSION_LESS 3.0)
   cmake_policy(SET CMP0048 OLD)
 endif()
 
-INCLUDE (CheckIncludeFileCXX)
 INCLUDE (CheckIncludeFile)
+INCLUDE (CheckIncludeFiles)
+INCLUDE (CheckIncludeFileCXX)
+
+# Include directories used in the compilation of all source code
+include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/include )
 
 project (PinSimBuild)
 # The version number.
@@ -66,8 +70,6 @@ set(PIN_DEFINES
   __DARWIN_UNIX03=0)
 
 
-# CHECK_INCLUDE_FILE_CXX( sst/core/interprocess/sstmutex.h FOUND_SST -I${SST_CORE}/include )
-
 set(CMAKE_REQUIRED_FLAGS "")
 foreach (PTH ${PIN_INCLUDE_DIRS})
   set (CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} -I${PTH}")
@@ -82,18 +84,16 @@ foreach (FLG ${PIN_CXX_FLAGS})
   set (CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} ${FLG}")
 endforeach()
 
+# message("CMAKE_REQUIRED_FLAGS = ${CMAKE_REQUIRED_FLAGS}"\n)
 
+set (CMAKE_REQUIRED_INCLUDES "${PIN_ROOT}/source/include")
+CHECK_INCLUDE_FILE_CXX( pin/pin.H FOUND_PIN )
 CHECK_INCLUDE_FILE_CXX( mySSTMutex.h FOUND_MY_SST -I${CMAKE_SOURCE_DIR}/include )
-message("FOUND_MY_SST = ${FOUND_MY_SST}")
 
-# if (NOT FOUND_SST)
-#   message(FATAL_ERROR "cannot locate valid SST header files at given SST_CORE path")
-# endif()
-
-CHECK_INCLUDE_FILE_CXX( pin.H FOUND_PIN -I${PIN_INCLUDE_DIRS} )
-message("FOUND_PIN = ${FOUND_PIN}")
-message("PIN_ROOT = ${PIN_ROOT}")
-message("CMAKE_REQUIRED_FLAGS = ${CMAKE_REQUIRED_FLAGS}\n")
+# If NOT found then print errors
+if (NOT FOUND_MY_SST)
+  message(FATAL_ERROR "cannot locate valid SST header files at given SST_CORE path")
+endif()
 
 if (NOT FOUND_PIN)
   message(FATAL_ERROR "cannot locate valid PIN header files at given PIN_ROOT path")

@@ -1,8 +1,0 @@
-#! /usr/bin/env bash
-
-echo making test...
-cd write/
-make
-cd ..
-make
-echo test build complete

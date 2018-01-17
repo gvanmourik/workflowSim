@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 
+## rm CMakeCache.txt
+## echo deleting CMakeCache.txt...
+
 CXXFLAGS="-std=c++11" \
 CXX=g++ \
 CC=gcc \

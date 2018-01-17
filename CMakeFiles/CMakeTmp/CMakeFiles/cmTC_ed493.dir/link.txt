@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_ed493.dir/CMakeCCompilerABI.c.o  -o cmTC_ed493 

@@ -182,6 +182,33 @@ tracer/fast:
 	cd /Users/gvanmou/Desktop/workflowProject && $(MAKE) -f pintools/CMakeFiles/tracer.dir/build.make pintools/CMakeFiles/tracer.dir/build
 .PHONY : tracer/fast
 
+traceTool.o: traceTool.cpp.o
+
+.PHONY : traceTool.o
+
+# target to build an object file
+traceTool.cpp.o:
+	cd /Users/gvanmou/Desktop/workflowProject && $(MAKE) -f pintools/CMakeFiles/tracer.dir/build.make pintools/CMakeFiles/tracer.dir/traceTool.cpp.o
+.PHONY : traceTool.cpp.o
+
+traceTool.i: traceTool.cpp.i
+
+.PHONY : traceTool.i
+
+# target to preprocess a source file
+traceTool.cpp.i:
+	cd /Users/gvanmou/Desktop/workflowProject && $(MAKE) -f pintools/CMakeFiles/tracer.dir/build.make pintools/CMakeFiles/tracer.dir/traceTool.cpp.i
+.PHONY : traceTool.cpp.i
+
+traceTool.s: traceTool.cpp.s
+
+.PHONY : traceTool.s
+
+# target to generate assembly for a file
+traceTool.cpp.s:
+	cd /Users/gvanmou/Desktop/workflowProject && $(MAKE) -f pintools/CMakeFiles/tracer.dir/build.make pintools/CMakeFiles/tracer.dir/traceTool.cpp.s
+.PHONY : traceTool.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -196,6 +223,9 @@ help:
 	@echo "... install/local"
 	@echo "... test"
 	@echo "... tracer"
+	@echo "... traceTool.o"
+	@echo "... traceTool.i"
+	@echo "... traceTool.s"
 .PHONY : help
 
 

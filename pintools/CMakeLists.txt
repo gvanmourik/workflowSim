@@ -1,6 +1,6 @@
 
 
-add_library(tracer traceTest.cpp)
+add_library(tracer traceTool.cpp)
 target_include_directories(tracer PUBLIC ${PIN_INCLUDE_DIRS})
 
 foreach(DEF ${PIN_DEFINES})
