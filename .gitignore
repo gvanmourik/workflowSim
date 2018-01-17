@@ -3,9 +3,16 @@
 
 *.swp
 *.swo
+*.out
+*.tcl
+*.log
 
 # Ignore these directories
 bin/
 test/
 data/
+
+# CMake
 CMakeFiles/
+CMakeCache.txt
+*.cmake
