@@ -119,5 +119,6 @@ endif()
 
 add_subdirectory(src)
 add_subdirectory(pintools)
+add_subdirectory(trace_programs)
 
 

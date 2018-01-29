@@ -12,4 +12,5 @@ CC=gcc \
 cmake \
   -DSST_CORE=$HOME/Programs/install/sstcore-7.1.0 \
   -DPIN_ROOT=$HOME/Programs/pin-3.2-81205-clang-mac \
+  -DCMAKE_INSTALL_PREFIX=$HOME/Desktop/workflowProject_copy2_install \
 ..

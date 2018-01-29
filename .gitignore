@@ -8,12 +8,13 @@
 *.log
 
 # Ignore these directories
-bin/
-test/
-data/
-recorded_errors/
+bin
+test
+data
+build
+recorded_errors
 
 # CMake
-CMakeFiles/
+CMakeFiles
 CMakeCache.txt
 *.cmake

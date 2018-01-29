@@ -18,3 +18,6 @@ endforeach()
 foreach(LDFLAG ${LDFLAGS})
 	target_compile_options(tracer PUBLIC ${LDFLAG})
 endforeach()
+
+
+install (FILES ../build/pintools/libtracer.a DESTINATION bin)

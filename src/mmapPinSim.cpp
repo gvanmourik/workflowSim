@@ -51,15 +51,15 @@ int main (int argc, char** argv)
 	// To modify
 	std::string home = "/Users/gvanmou"; //would use $HOME, but execve does not read
     std::string pinCall = home + "/Programs/pin-3.2-81205-clang-mac/pin";
-    std::string pintool = "traceTool.dylib";
-    std::string progToTrace = "forkTest";
+    // std::string pintool = "traceTool.dylib";
+    // std::string progToTrace = "forkTest";
 
     // ADD debugging. Does not work properly.
     // std::string debug1 = "-appdebug";
     // std::string debug2 = "-appdebug_lldb_options";
 	std::string pinOptions = "-t";
-	std::string pintoolCall = "bin/traceTool.dylib";
-    std::string progCall = "bin/forkTest";
+	std::string pintoolCall = "./libtracer.a";
+    std::string progCall = "./hello_world";
 
 	// Pin call
     int my_argc = 5;
@@ -110,7 +110,7 @@ int main (int argc, char** argv)
         }
 
         std::string fname = "size_vs_ratio.data";
-        fout.open("data/" + fname);
+        fout.open(fname);
         if ( fout.is_open() )
         {
             printf("Running %d cache simulations...please wait...\n", numberOfSizes);
@@ -132,7 +132,7 @@ int main (int argc, char** argv)
             }
             fout.close();
             printf("Simulations complete...\n");
-            printf("Data recorded in 'data/%s'\n\n", fname.c_str());
+            printf("Data recorded in '%s'\n\n", fname.c_str());
         }
         else
         {
