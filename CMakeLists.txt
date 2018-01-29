@@ -69,6 +69,23 @@ set(PIN_DEFINES
   __DARWIN_ONLY_UNIX_CONFORMANCE=1 
   __DARWIN_UNIX03=0)
 
+set(LIBS
+  pin
+  xed
+  pin3dwarf
+  stlport-dynamic
+  m-dynamic
+  c-dynamic
+  unwind-dynamic)
+
+set(LDFLAGS
+  -nostdlib
+  -w -Wl,-exported_symbols_list,$(PIN_ROOT)/source/include/pin/pintool.exp
+  -L${PIN_ROOT}/intel64/runtime/pincrt
+  -L${PIN_ROOT}/intel64/lib
+  -L${PIN_ROOT}/intel64/lib-ext
+  -L${PIN_ROOT}/extras/xed-intel64/lib)
+
 
 set(CMAKE_REQUIRED_FLAGS "")
 foreach (PTH ${PIN_INCLUDE_DIRS})
@@ -77,12 +94,13 @@ endforeach()
 foreach (PTH ${PIN_SYSTEM_INCLUDES})
   set (CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} -isystem ${PTH}")
 endforeach()
-foreach (DEF ${PIN_DEFINES})
-  set (CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} -D${DEF}")
-endforeach()
 foreach (FLG ${PIN_CXX_FLAGS})
   set (CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} ${FLG}")
 endforeach()
+foreach (DEF ${PIN_DEFINES})
+  set (CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} -D${DEF}")
+endforeach()
+
 
 # message("CMAKE_REQUIRED_FLAGS = ${CMAKE_REQUIRED_FLAGS}"\n)
 
