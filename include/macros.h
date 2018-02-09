@@ -1,6 +1,9 @@
 #ifndef MY_MACROS_H_
 #define MY_MACROS_H_
 
+#include <string>
+#include <stdlib.h>
+#include <unistd.h>
 #include <myCircularBuffer.h>
 
 // typedef intptr_t trace_entry_t; //98
@@ -15,7 +18,14 @@ constexpr int const WORKSPACE_LEN = (WORKSPACE_SIZE / TRACE_ENTRY_SIZE);
 constexpr int const CIR_BUF_SIZE = sizeof(cir_buf_t);
 
 #ifndef MMAP_PATH
-    #define MMAP_PATH (const char*) "/Users/gvanmou/Desktop/workflowProject/bin/pinMap.out"
+
+	long size = pathconf(".", _PC_PATH_MAX);
+	char *buf = (char *)malloc((size_t)size);
+	char *cwd = getcwd(buf, (size_t)size);
+	std::string cwd_s(cwd);
+	std::string mmap_path = cwd_s + "/pinMap.out";
+
+    #define MMAP_PATH (const char*) mmap_path.c_str()
 #endif
 
 

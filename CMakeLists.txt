@@ -23,8 +23,13 @@ set (PinSimBuild_VERSION_MINOR 1)
 include(CTest)
 enable_testing()
 
+set(MY_SST_CORE "" CACHE STRING "Path to install prefix to the required versions of the CircularBuffer, SSTMutex, and PinTunnel")
 set(SST_CORE "" CACHE STRING "Path to install prefix of SST-core")
 set(PIN_ROOT "" CACHE STRING "Path to root of Intel PIN distribution")
+
+if ("${MY_SST_CORE}" STREQUAL "")
+  message(FATAL_ERROR "must set -DMY_SST_CORE= to install prefix for the required versions of the CircularBuffer, SSTMutex, and PinTunnel")
+endif()
 
 if ("${SST_CORE}" STREQUAL "")
   message(FATAL_ERROR "must set -DSST_CORE= to install prefix of sst-core")
@@ -120,5 +125,3 @@ endif()
 add_subdirectory(src)
 add_subdirectory(pintools)
 add_subdirectory(trace_programs)
-
-

@@ -23,19 +23,16 @@ void Fini( INT32 code, void *v );
 bool bufferCheckAndClear();
 bool bufferTransfer();
 INT32 Usage();
-static bool signalHandler(unsigned int tid, int sig, LEVEL_VM::CONTEXT *ctx, bool hasHandler,
-                          const LEVEL_BASE::EXCEPTION_INFO *exceptInfo, void *);
 
 
 int main( int argc, char *argv[] )
 {
     // PIN_InitSymbols() must be called before PIN_Init()
+    printf("Before PIN_InitSymbols...\n");
     PIN_InitSymbols();
     if ( PIN_Init(argc, argv) ) { return Usage(); }
 
-    // LEVEL_PINCLIENT::PIN_InterceptSignal(SIGSEGV,
-    //                                      signalHandler, nullptr);
-
+    printf("Before INS_AddInstrumentFunction...\n");
 	INS_AddInstrumentFunction(Instruction, 0);
     PIN_AddFiniFunction(Fini, 0);
 
@@ -95,7 +92,7 @@ void recordMemWR( void *addr )
 
 INT32 Usage()
 {
-    std::cerr << "Effective address trace to sstmutex buffer" << std::endl;
+    cerr << "Effective address trace to sstmutex buffer" << endl;
     cerr << endl << KNOB_BASE::StringKnobSummary() << endl;
     return -1;
 }
@@ -108,17 +105,6 @@ void Fini( INT32 code, void *v )
 
 	printf("\nPIN is finished...goodbye... {traceTool.cpp}\n");
 }
-
-// static bool signalHandler(unsigned int tid, int sig, LEVEL_VM::CONTEXT *ctx, bool hasHandler,
-//                           const LEVEL_BASE::EXCEPTION_INFO *exceptInfo, void *)
-// {
-//     printf("Process[%d] Thread[%d] recieved signal %d\n...waiting...\n", getpid(), tid, sig);
-//     sleep(10);
-
-//     exit(0);
-//     return true;
-// }
-
 
 //Additional Functions
 bool bufferCheckAndClear()
@@ -135,7 +121,7 @@ bool bufferCheckAndClear()
 
 bool bufferTransfer()
 {
-    // printf("\nIN bufferTransfer()... {traceTool.cpp}\n");
+    printf("\nIN bufferTransfer()... {traceTool.cpp}\n");
     
     static PinTunnel tunnel;
     //printf("tunnel address [bufferTransfer] = %p <----- {traceTool.cpp}\n", (void*)&newTunnel);

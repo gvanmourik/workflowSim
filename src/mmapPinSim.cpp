@@ -58,14 +58,21 @@ int main (int argc, char** argv)
     // std::string debug1 = "-appdebug";
     // std::string debug2 = "-appdebug_lldb_options";
 	std::string pinOptions = "-t";
-	std::string pintoolCall = "./libtracer.a";
-    std::string progCall = "./hello_world";
+	std::string pintoolCall = "libtracer";
+    std::string progCall = "../trace_programs/hello_world";
 
 	// Pin call
     int my_argc = 5;
     const char *programCall[100] = {pinCall.c_str(), pinOptions.c_str(),
 					pintoolCall.c_str(), "--", progCall.c_str(), 
                     nullptr};
+
+    printf("\nPin fork call:\n");
+    for (int i = 0; i < 6; i++)
+    {
+        printf("%s ", programCall[i]);
+    }
+    printf("\n");
 
 	// Execute call and read in trace data
     std::vector<trace_entry_t> traceData;
@@ -109,7 +116,7 @@ int main (int argc, char** argv)
             cache_sizes.push_back( 1024 * pow(2,i) );
         }
 
-        std::string fname = "size_vs_ratio.data";
+        std::string fname = "../data/size_vs_ratio.log";
         fout.open(fname);
         if ( fout.is_open() )
         {

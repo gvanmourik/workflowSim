@@ -73,29 +73,6 @@ private:
         return ( td + (numOfBuffers * buffer) ) * page_size;
     }
 
-    // size_t getShmSegSize()
-    // {
-    //     shmPtr = mmap(NULL, sizeof(TunnelData), PROT_READ, MAP_SHARED, fd, 0);
-    //     if ( shmPtr == MAP_FAILED ) 
-    //     {
-    //         // Not using Output because IPC means Output might not be available
-    //         // fprintf(stderr, "mmap 0 failed: %s\n", strerror(errno));
-    //         printf("MMAP 0 failed: %s\n", strerror(errno));
-    //         exit(1);
-    //     }
-
-    //     td = (TunnelData*)shmPtr;
-    //     size_t result = td->shmSegSize;
-    //     printf("shmSize2 [getShmSegSize() 2nd] = %zu\n", shmSize);
-    //     if ( munmap(shmPtr, sizeof(TunnelData)) == -1 )
-    //     {
-    //         printf("MUNMAP 0 failed\n");
-    //         //exit(1);
-    //     }
-
-    //     return result;
-    // }
-
 
 public:
     /**
@@ -108,6 +85,8 @@ public:
     PinTunnel(size_t numBuffers, size_t bufferLength, uint32_t expectedChildren = 1) : master(true), shmPtr(NULL), fd(-1)
     {
         printf("\nCreating PinTunnel (parameterized constructor to initiate a tunnel)...\n\n");
+
+        printf("MMAP_PATH = %s\n", MMAP_PATH);
 
         filename = MMAP_PATH;
         fd = open(filename, O_RDWR|O_CREAT, 0660);
@@ -168,10 +147,16 @@ public:
      */
     PinTunnel() : master(false), shmPtr(NULL), fd(-1)
     {
+        printf("TEST!!!\n");
         printf("\nCreating PinTunnel (default constructor for existing tunnel)...\n\n");
 
+        printf("Before assigning MMAP_PATH to filename...\n");
         filename = MMAP_PATH;
+
+        printf("MMAP_PATH = %s\n", filename);
+
         fd = open(filename, O_RDWR, 0660);
+        printf("Before 1st IF...\n");
         if ( fd < 0 ) 
         {
             // Not using Output because IPC means Output might not be available
@@ -187,6 +172,7 @@ public:
         // Find shmSize
         //-----------------------
         shmPtr = mmap(NULL, sizeof(TunnelData), PROT_READ, MAP_SHARED, fd, 0);
+        printf("Before 2nd IF...\n");
         if ( shmPtr == MAP_FAILED ) 
         {
             // Not using Output because IPC means Output might not be available
@@ -197,6 +183,7 @@ public:
 
         td = (TunnelData*)shmPtr;
         shmSize = td->shmSegSize;
+        printf("Before 3rd IF...\n");
         if ( munmap(shmPtr, sizeof(TunnelData)) == -1 )
         {
             printf("MUNMAP 0 failed\n");

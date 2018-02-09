@@ -48,7 +48,7 @@ public:
 
 		while( true ) 
         {
-            // printf("waiting to read... {myCircularBuffer}\n");   
+            printf("waiting to read... {myCircularBuffer}\n");   
             //wait until the buffer is full
             while ( !bufferIsFull() )
 			{
@@ -58,7 +58,7 @@ public:
                     break;
                 }
 
-                //waiting...
+                // printf("waiting...\n");
                 lockGuard g(bufferMutex);
 				bufferMutex.processorPause(loop_counter++);
 			}
