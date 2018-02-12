@@ -7,7 +7,7 @@ rm CMakeCache.txt
 echo deleting CMakeCache.txt...
 
 INSTALL_PATH=$HOME/Desktop/workflowProject_copy2_install
-#define MMAP_PATH=INSTALL_PATH/
+
 CXXFLAGS="-std=c++11" \
 CXX=g++ \
 CC=gcc \

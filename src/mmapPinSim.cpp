@@ -51,22 +51,17 @@ int main (int argc, char** argv)
 	// To modify
 	std::string home = "/Users/gvanmou"; //would use $HOME, but execve does not read
     std::string pinCall = home + "/Programs/pin-3.2-81205-clang-mac/pin";
-    // std::string pintool = "traceTool.dylib";
-    // std::string progToTrace = "forkTest";
-
-    // ADD debugging. Does not work properly.
-    // std::string debug1 = "-appdebug";
-    // std::string debug2 = "-appdebug_lldb_options";
 	std::string pinOptions = "-t";
-	std::string pintoolCall = "libtracer";
-    std::string progCall = "../trace_programs/hello_world";
+	std::string pintoolCall = "libtracer.dylib";
+    std::string traceProgram = "../trace_programs/hello_world";
 
 	// Pin call
     int my_argc = 5;
     const char *programCall[100] = {pinCall.c_str(), pinOptions.c_str(),
-					pintoolCall.c_str(), "--", progCall.c_str(), 
+					pintoolCall.c_str(), "--", traceProgram.c_str(), 
                     nullptr};
 
+    // Print Pin call
     printf("\nPin fork call:\n");
     for (int i = 0; i < 6; i++)
     {
@@ -174,13 +169,19 @@ bool exeProg(int argc, const char **argv, std::vector<trace_entry_t> &data)
 	{
 		//-----------------------
 		// Child Process
-		//-----------------------
+		//-----------------------  
+        
+        printf("BEFORE PIN CALL...\n");
+        printf("argv[0] = %s\n", argv[0]);
+
 		if ( execve(argv[0], (char **)argv, nullptr) )
 		{
 			perror("Error: Program failed to execute");
             printf("Check path in 'home' variable {main()}\n");
 			return false;
 		}
+
+        printf("AFTER PIN CALL...\n");
 
 	}
 

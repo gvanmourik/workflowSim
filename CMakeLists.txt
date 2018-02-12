@@ -43,7 +43,8 @@ set(PIN_INCLUDE_DIRS
   ${PIN_ROOT}/source/include/pin 
   ${PIN_ROOT}/source/include/pin/gen 
   ${PIN_ROOT}/extras/components/include 
-  ${PIN_ROOT}/extras/xed-intel64/include/xed 
+  ${PIN_ROOT}/extras/xed-intel64/include/xed
+  ${PIN_ROOT}/extras/stlport/include 
   ${PIN_ROOT}/source/tools/InstLib 
   ${PIN_ROOT}/extras/crt/include)
 
@@ -85,7 +86,7 @@ set(LIBS
 
 set(LDFLAGS
   -nostdlib
-  -w -Wl,-exported_symbols_list,$(PIN_ROOT)/source/include/pin/pintool.exp
+  -w -Wl,-exported_symbols_list,${PIN_ROOT}/source/include/pin/pintool.exp
   -L${PIN_ROOT}/intel64/runtime/pincrt
   -L${PIN_ROOT}/intel64/lib
   -L${PIN_ROOT}/intel64/lib-ext

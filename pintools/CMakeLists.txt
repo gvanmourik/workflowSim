@@ -1,7 +1,12 @@
 add_library(tracer SHARED 
 			traceTool.cpp 
-			${PIN_ROOT}/intel64/runtime/pincrt/crtbeginS.o )		
+			${PIN_ROOT}/intel64/runtime/pincrt/crtbeginS.o )	
 target_include_directories(tracer PUBLIC ${PIN_INCLUDE_DIRS})
+
+message(STATUS "PIN_INCLUDE_DIRS = ")
+foreach(DIR ${PIN_INCLUDE_DIRS})
+	message("\t-I${DIR}")
+endforeach()
 
 message(STATUS "PIN_DEFINES = ")
 foreach(DEF ${PIN_DEFINES})
