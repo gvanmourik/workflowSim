@@ -63,7 +63,7 @@ int main (int argc, char** argv)
 
     // Print Pin call
     printf("\nPin fork call:\n");
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 5; i++)
     {
         printf("%s ", programCall[i]);
     }
@@ -172,7 +172,13 @@ bool exeProg(int argc, const char **argv, std::vector<trace_entry_t> &data)
 		//-----------------------  
         
         printf("BEFORE PIN CALL...\n");
-        printf("argv[0] = %s\n", argv[0]);
+        // Print Pin call
+        printf("\nPin fork call again...\n");
+        for (int i = 0; i < 5; i++)
+        {
+            printf("%s ", argv[i]);
+        }
+        printf("\n");
 
 		if ( execve(argv[0], (char **)argv, nullptr) )
 		{

@@ -3,8 +3,8 @@
 echo moving to the build directory...
 cd build
 
-rm CMakeCache.txt
 echo deleting CMakeCache.txt...
+rm CMakeCache.txt
 
 INSTALL_PATH=$HOME/Desktop/workflowProject_copy2_install
 
