@@ -176,7 +176,7 @@ message("BUILD_INTERFACE = ${BUILD_INTERFACE}")
 # target_link_libraries(tracer ${LIBS})
 # target_link_libraries(tracer "-I${PIN_ROOT}/extras/crt/include")
 
-# target_link_libraries(tracer "-nostdlib")
+target_link_libraries(tracer "-nostdlib")
 
 # foreach(LIB ${LIBS})
 # 	find_library(LIB_IS_FOUND ${LIB}
